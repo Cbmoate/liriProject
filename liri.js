@@ -21,10 +21,10 @@ function liri(params){
     case "random":
       doRandom();
       break;
-      
+
     case "my-tweets":
     case "my tweets":
-    case "tweets";
+    case "tweets":
       myTweets();
       break;
 
@@ -35,8 +35,7 @@ function liri(params){
       break;
 
     case "spotify-this-song":
-    case "spotify"
-    case 
+    case "spotify":
       spotifySong();
       break;
 
@@ -117,11 +116,14 @@ function spotifySong(){
   }
 }
 
+//uses random.txt to command liri.  doesn't actually do that yet...
 function doRandom(){
-  fs.readFile('./andom.txt', 'utf8', function(err, data){
-    if (err) throw err;
+  fs.readFile('./random.txt', 'utf8', function(err, data){
+    if(err){
+     console.log(err);
+   }
     else{
-      data = data.split(',');
+      data = data.slice(',');
       var params = data;
       liri(params);
     }
