@@ -1,4 +1,5 @@
 //declaring variables/bringing in npms
+var fs = require('fs')
 var params = process.argv.slice(2);
 var keys = require("./keys.js");
 var Twitter = require('twitter');
@@ -33,12 +34,11 @@ function liri(params){
       console.log("Invalid command.");
       break;
   }
-}
+} 
 
 //grabs the last 20 tweets and displays/logs them
 function myTweets(){
   client.get('statuses/user_timeline', function(error, tweets, response){
-    console.log(error);
     if(error) {
       console.log(error);
       throw error;
@@ -51,7 +51,6 @@ function myTweets(){
     }
   });
 }
-
 
 //pulls movie info from OMDB and displays, then logs them
 function movieThis(){
