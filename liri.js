@@ -1,11 +1,10 @@
 //declaring variables/bringing in npms
-var fs = require('fs')
 var params = process.argv.slice(2);
+var fs = require('fs')
 var keys = require("./keys.js");
 var Twitter = require('twitter');
 var spotify = require('spotify');
 var request = require('request');
-
 
 //grabbing all the twitter keys 
 var client = new Twitter({
@@ -15,22 +14,32 @@ var client = new Twitter({
   access_token_secret: keys.twitterKeys.access_token_secret 
 });
 
-
 //uses a swicth case to make functions run
 function liri(params){
   switch(params[0]){
     case "do-what-it-says":
+    case "random":
       doRandom();
       break;
+      
     case "my-tweets":
+    case "my tweets":
+    case "tweets";
       myTweets();
       break;
+
     case "movie-this":
+    case "movie info":
+    case "movie":
       movieThis();
       break;
+
     case "spotify-this-song":
+    case "spotify"
+    case 
       spotifySong();
       break;
+
     default:
       console.log("Invalid command.");
       break;
@@ -109,10 +118,8 @@ function spotifySong(){
 }
 
 function doRandom(){
-  fs.readFile('./random.txt', 'utf8', function(err, data){
-    if (err){
-      console.log(err);
-    }
+  fs.readFile('./andom.txt', 'utf8', function(err, data){
+    if (err) throw err;
     else{
       data = data.split(',');
       var params = data;
@@ -122,4 +129,4 @@ function doRandom(){
 }
 
 //passes params into the program and runs it
-liri(params)
+liri(params);
