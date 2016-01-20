@@ -5,6 +5,7 @@ var keys = require("./keys.js");
 var Twitter = require('twitter');
 var spotify = require('spotify');
 var request = require('request');
+var sName = {screen_name: 'CBmoate'}
 
 //grabbing all the twitter keys 
 var client = new Twitter({
@@ -38,7 +39,7 @@ function liri(params){
 
 //grabs the last 20 tweets and displays/logs them
 function myTweets(){
-  client.get('statuses/user_timeline', function(error, tweets, response){
+  client.get('statuses/user_timeline', sName, function(error, tweets, response){
     if(error) {
       console.log(error);
       throw error;
