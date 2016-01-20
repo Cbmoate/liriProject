@@ -20,7 +20,7 @@ var client = new Twitter({
 function liri(params){
   switch(params[0]){
     case "do-what-it-says":
-      doWhatItSays();
+      doRandom();
       break;
     case "my-tweets":
       myTweets();
@@ -106,6 +106,19 @@ function spotifySong(){
       }
     });
   }
+}
+
+function doRandom(){
+  fs.readFile('./random.txt', 'utf8', function(err, data){
+    if (err){
+      console.log(err);
+    }
+    else{
+      data = data.split(',');
+      var params = data;
+      liri(params);
+    }
+  })
 }
 
 //passes params into the program and runs it
