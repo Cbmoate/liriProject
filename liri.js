@@ -5,7 +5,7 @@ var keys = require("./keys.js");
 var Twitter = require('twitter');
 var spotify = require('spotify');
 var request = require('request');
-var sName = {screen_name: 'CBmoate'}
+
 
 //grabbing all the twitter keys 
 var client = new Twitter({
@@ -39,16 +39,14 @@ function liri(params){
 
 //grabs the last 20 tweets and displays/logs them
 function myTweets(){
-  client.get('statuses/user_timeline', sName, function(error, tweets, response){
-    if(error) {
-      console.log(error);
-      throw error;
-    }
-    console.log("My last 20 tweets:")
-    for (i = 0; i < 20; i++){
-      console.log(i+1 + ". On " + tweets[i].created_at + " I Tweeted: " + tweets[i].text);
-      fs.appendFile("log.txt", i+1 + ". On " + tweets[i].created_at + " I Tweeted: " + tweets[i].text + "\n", function(err){
-      })
+  var sName = {screen_name: 'CBmoate'}
+  client.get('statuses/user_timeline', sName, function(error, tweet, response){
+    if(error) throw error;
+    for (var i = 0; i < 20; i++) {
+      console.log(tweet[i].text);
+      fs.appendFile("log.txt", "\n" + tweet[i].text + "\n");
+      console.log("Tweeted on: " + tweet[i].created_at + "\n");
+      fs.appendFile("log.txt", "Tweeted on: " + tweet[i].created_at + "\n")
     }
   });
 }
